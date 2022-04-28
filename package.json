@@ -8,8 +8,8 @@
     "data",
     "quick"
   ],
-  "repository": {},
-  "version": "0.0.1",
+  "repository": "https://github.com/DavidBriglio/toss-me-a",
+  "version": "0.0.3",
   "main": "dist/tossmea.js",
   "scripts": {
     "build": "tsc"

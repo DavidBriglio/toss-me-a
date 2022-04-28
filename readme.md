@@ -1,4 +1,4 @@
-# toss-me-a
+# toss-me-a [![npm version](https://badge.fury.io/js/toss-me-a.svg)](https://badge.fury.io/js/toss-me-a)
 
 ### Created by David Briglio
 
