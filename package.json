@@ -1,15 +1,17 @@
 {
   "name": "toss-me-a",
+  "version": "1.0.0",
   "author": "David Briglio",
   "description": "Tiny and simple package to mock data",
   "license": "MIT",
   "keywords": [
     "fake",
     "data",
-    "quick"
+    "quick",
+    "mock",
+    "simple"
   ],
   "repository": "https://github.com/DavidBriglio/toss-me-a",
-  "version": "0.0.3",
   "main": "dist/tossmea.js",
   "scripts": {
     "build": "tsc"

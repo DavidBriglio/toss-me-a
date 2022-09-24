@@ -3,7 +3,8 @@
     "strict": true,
     "baseUrl": ".",
     "outDir": "dist",
-    "removeComments": true
+    "removeComments": true,
+    "declaration": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

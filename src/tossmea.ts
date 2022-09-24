@@ -1,53 +1,59 @@
 const fakeNumber = (min: number = 0, max: number = 100) => {
-  min = min || 0
-  max = max || 100
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 const fakeMap: { [key: string]: any } = {
-  string: (length: number) =>
-    (Math.random() + 1).toString(36).substring(2, (length || 10) + 2),
   number: fakeNumber,
   boolean: () => fakeNumber() % 2 === 0,
-  date: () => new Date(Math.random() * 900000),
-  array: (type: string, length: number): any[] => {
-    const result: any[] = []
-    for (let i = 0; i < length; i++) {
-      result.push(fakeMap[type]?.())
+  string: (length: number = 10, formatted: string = '') => {
+    let result = ''
+    const isFormatted = formatted.toLowerCase() === 'f'
+    while (result.length < length) {
+      result +=
+        Math.random()
+          .toString(36)
+          .substring(2)
+          .substring(isFormatted ? fakeNumber(1, 8) : 0) +
+        (isFormatted ? ' ' : '')
     }
     return result
+  },
+  date: (start: string, end: string) => {
+    const startDate = start ? parseInt(start) : 0
+    const endDate = end ? parseInt(end) : Date.now()
+    return new Date(startDate + Math.random() * (endDate - startDate))
   }
 }
 
-function tossMeA(thing: any, count: number = 1): any | any[] {
+function tossMeA(thing: any, ammount: number = 1): any | any[] {
   const result = []
+  const counter = ammount > 0 ? ammount : 1
 
-  for (let i = 0; i < count; i++) {
-    const item: { [key: string]: any } = {}
+  for (let i = 0; i < counter; i++) {
+    let item: any = null
 
-    Object.keys(thing).forEach((key) => {
-      const value = thing[key]
+    if (!Array.isArray(thing) && typeof thing === 'object') {
+      item = {}
 
-      if (Array.isArray(value)) {
-        item[key] = fakeMap.array(value[0], value[1])
-      } else {
-        switch (typeof value) {
-          case 'object':
-            // @ts-ignore
-            item[key] = quickThing(value)
-            break
-          case 'string':
-            const [type, ...mod] = value.split('-')
-            item[key] = fakeMap[type](...mod)
-            break
-          case 'function':
-            item[key] = value()
-            break
-          default:
-            item[key] = value
-        }
+      Object.keys(thing).forEach((key) => {
+        item[key] = tossMeA(thing[key])
+      })
+    } else if (Array.isArray(thing)) {
+      item = tossMeA(thing[0], thing[1])
+    } else {
+      switch (typeof thing) {
+        case 'string':
+          const [type, ...mod] = thing.split('-')
+          item = fakeMap[type](...mod)
+          break
+        case 'function':
+          item = thing()
+          break
+        default:
+          item = thing
+          break
       }
-    })
+    }
 
     result.push(item)
   }
