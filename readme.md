@@ -2,7 +2,7 @@
 
 ### Created by David Briglio
 
-This is a quick and simple data mocking package. Provide the method with the structure of the object / item you would like mocked and the ammount to mock, and recive it back.
+This is a quick and simple standalone data mocking package. Provide the method with the structure of the object / type you would like mocked and the resulting amount to mock.
 
 ## Install
 
@@ -27,7 +27,7 @@ This package exports a default method `tossMeA`. Provide this method an object t
 | Type     | Options                            | Example                              | Description                                                                                          |
 | -------- | ---------------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | string   | `'string-[length]-[formatted]'`    | `'string-15-f'`                      | Get a string of specified length with optional spacing formatting `f` (default 10, non-formatted)    |
-| number   | `'number-[min]-[max]'`             | `'number-0-50'`                      | Get a string between min/max values (default 0-100)                                                  |
+| number   | `'number-[min]-[max]'`             | `'number-0-50'`                      | Get an integer number between min/max values (default 0-100)                                         |
 | boolean  | N/A                                | `'boolean'`                          | Get a boolean value                                                                                  |
 | date     | `'date-[start epoch]-[end epoch]'` | `'date-1604102400000-1635638400000'` | Get a random date between a start and end date (epoch) (default is between epoch 0 and current date) |
 | array    | `['[type]', [amount]]`             | `['string', 5]`                      | Get an array containing the amount of type provided                                                  |
